@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/adb-reset-font-display.ts"],
+  "sourcesContent": ["import { launchCommand, LaunchType } from \"@raycast/api\";\n\nexport default async function resetFontDisplaySize() {\n  await launchCommand({ name: \"adb-font-size\", type: LaunchType.UserInitiated, arguments: { factor: \"1.0\" } });\n  await launchCommand({ name: \"adb-display-size\", type: LaunchType.UserInitiated, arguments: { factor: \"1.0\" } });\n}\n"],
+  "mappings": "yaAAA,IAAAA,EAAA,GAAAC,EAAAD,EAAA,aAAAE,IAAA,eAAAC,EAAAH,GAAA,IAAAI,EAA0C,wBAE1C,eAAOF,GAA8C,CACnD,QAAM,iBAAc,CAAE,KAAM,gBAAiB,KAAM,aAAW,cAAe,UAAW,CAAE,OAAQ,KAAM,CAAE,CAAC,EAC3G,QAAM,iBAAc,CAAE,KAAM,mBAAoB,KAAM,aAAW,cAAe,UAAW,CAAE,OAAQ,KAAM,CAAE,CAAC,CAChH",
+  "names": ["adb_reset_font_display_exports", "__export", "resetFontDisplaySize", "__toCommonJS", "import_api"]
+}

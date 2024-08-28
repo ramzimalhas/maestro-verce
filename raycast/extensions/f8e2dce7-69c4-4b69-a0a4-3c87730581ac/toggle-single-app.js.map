@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/toggle-single-app.tsx"],
+  "sourcesContent": ["import { spawnSync } from \"child_process\";\nimport { closeMainWindow, showHUD } from \"@raycast/api\";\n\nexport default async () => {\n  await closeMainWindow();\n  const out = spawnSync(\"defaults read com.apple.dock single-app\", { shell: true });\n  const isTurnOn = String(out.output[1]).trim();\n\n  if (isTurnOn === \"1\") {\n    spawnSync(\"defaults write com.apple.dock single-app -bool FALSE && killall Dock\", { shell: true });\n    await showHUD(\"\uD83D\uDCBB Turn off single-app mode\");\n  } else {\n    spawnSync(\"defaults write com.apple.dock single-app -bool TRUE && killall Dock\", { shell: true });\n    await showHUD(\"\uD83D\uDCBB Turn on single-app mode\");\n  }\n};\n"],
+  "mappings": "yaAAA,IAAAA,EAAA,GAAAC,EAAAD,EAAA,aAAAE,IAAA,eAAAC,EAAAH,GAAA,IAAAI,EAA0B,yBAC1BC,EAAyC,wBAElCH,EAAQ,SAAY,CACzB,QAAM,mBAAgB,EACtB,IAAMI,KAAM,aAAU,0CAA2C,CAAE,MAAO,EAAK,CAAC,EAC/D,OAAOA,EAAI,OAAO,CAAC,CAAC,EAAE,KAAK,IAE3B,QACf,aAAU,uEAAwE,CAAE,MAAO,EAAK,CAAC,EACjG,QAAM,WAAQ,oCAA6B,OAE3C,aAAU,sEAAuE,CAAE,MAAO,EAAK,CAAC,EAChG,QAAM,WAAQ,mCAA4B,EAE9C",
+  "names": ["toggle_single_app_exports", "__export", "toggle_single_app_default", "__toCommonJS", "import_child_process", "import_api", "out"]
+}

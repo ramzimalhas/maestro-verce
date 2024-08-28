@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/toggle-minimal-effect.tsx"],
+  "sourcesContent": ["import { spawnSync } from \"child_process\";\nimport { closeMainWindow, showHUD } from \"@raycast/api\";\n\nexport default async () => {\n  await closeMainWindow();\n  const out = spawnSync(\"defaults read com.apple.dock mineffect\", { shell: true });\n  const minEffect = String(out.output[1]).trim();\n  const oldIndex = effects.indexOf(minEffect);\n  const newIndex = oldIndex + 1 >= effects.length ? 0 : oldIndex + 1;\n  spawnSync(`defaults write com.apple.dock mineffect ${effects[newIndex]} && killall Dock`, { shell: true });\n  await showHUD(\"\uD83D\uDCBB Current minimal effect: \" + effectsTitle[newIndex]);\n};\n\nconst effects = [\"genie\", \"suck\", \"scale\"];\nconst effectsTitle = [\"Genie\", \"Suck\", \"Scale\"];\n"],
+  "mappings": "yaAAA,IAAAA,EAAA,GAAAC,EAAAD,EAAA,aAAAE,IAAA,eAAAC,EAAAH,GAAA,IAAAI,EAA0B,yBAC1BC,EAAyC,wBAElCH,EAAQ,SAAY,CACzB,QAAM,mBAAgB,EACtB,IAAMI,KAAM,aAAU,yCAA0C,CAAE,MAAO,EAAK,CAAC,EACzEC,EAAY,OAAOD,EAAI,OAAO,CAAC,CAAC,EAAE,KAAK,EACvCE,EAAWC,EAAQ,QAAQF,CAAS,EACpCG,EAAWF,EAAW,GAAKC,EAAQ,OAAS,EAAID,EAAW,KACjE,aAAU,2CAA2CC,EAAQC,CAAQ,CAAC,mBAAoB,CAAE,MAAO,EAAK,CAAC,EACzG,QAAM,WAAQ,qCAAgCC,EAAaD,CAAQ,CAAC,CACtE,EAEMD,EAAU,CAAC,QAAS,OAAQ,OAAO,EACnCE,EAAe,CAAC,QAAS,OAAQ,OAAO",
+  "names": ["toggle_minimal_effect_exports", "__export", "toggle_minimal_effect_default", "__toCommonJS", "import_child_process", "import_api", "out", "minEffect", "oldIndex", "effects", "newIndex", "effectsTitle"]
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/add-spacer-to-dock.tsx"],
+  "sourcesContent": ["import { spawnSync } from \"child_process\";\nimport { closeMainWindow, showHUD } from \"@raycast/api\";\n\nexport default async () => {\n  await closeMainWindow();\n  spawnSync(\n    'defaults write com.apple.dock persistent-apps -array-add \\'{\"tile-type\"=\"spacer-tile\";}\\' && killall Dock',\n    {\n      shell: true,\n    },\n  );\n  await showHUD(\"\uD83D\uDCBB Add spacer to Dock\");\n};\n"],
+  "mappings": "yaAAA,IAAAA,EAAA,GAAAC,EAAAD,EAAA,aAAAE,IAAA,eAAAC,EAAAH,GAAA,IAAAI,EAA0B,yBAC1BC,EAAyC,wBAElCH,EAAQ,SAAY,CACzB,QAAM,mBAAgB,KACtB,aACE,0GACA,CACE,MAAO,EACT,CACF,EACA,QAAM,WAAQ,8BAAuB,CACvC",
+  "names": ["add_spacer_to_dock_exports", "__export", "add_spacer_to_dock_default", "__toCommonJS", "import_child_process", "import_api"]
+}

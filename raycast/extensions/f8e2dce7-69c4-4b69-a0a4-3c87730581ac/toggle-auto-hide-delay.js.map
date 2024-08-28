@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/toggle-auto-hide-delay.tsx"],
+  "sourcesContent": ["import { spawnSync } from \"child_process\";\nimport { closeMainWindow, showHUD } from \"@raycast/api\";\n\nexport default async () => {\n  await closeMainWindow();\n  const out = spawnSync(\"defaults read com.apple.Dock autohide-time-modifier\", { shell: true });\n  const isTurnOn = String(out.output[1]).trim();\n\n  if (isTurnOn === \"0\") {\n    spawnSync(\"defaults write com.apple.Dock autohide-time-modifier -float 1 && killall Dock\", { shell: true });\n    await showHUD(\"\uD83D\uDCBB Turn on autohide time modifier\");\n  } else {\n    spawnSync(\"defaults write com.apple.Dock autohide-time-modifier -float 0 && killall Dock\", { shell: true });\n    await showHUD(\"\uD83D\uDCBB Turn off autohide time modifier\");\n  }\n};\n"],
+  "mappings": "yaAAA,IAAAA,EAAA,GAAAC,EAAAD,EAAA,aAAAE,IAAA,eAAAC,EAAAH,GAAA,IAAAI,EAA0B,yBAC1BC,EAAyC,wBAElCH,EAAQ,SAAY,CACzB,QAAM,mBAAgB,EACtB,IAAMI,KAAM,aAAU,sDAAuD,CAAE,MAAO,EAAK,CAAC,EAC3E,OAAOA,EAAI,OAAO,CAAC,CAAC,EAAE,KAAK,IAE3B,QACf,aAAU,gFAAiF,CAAE,MAAO,EAAK,CAAC,EAC1G,QAAM,WAAQ,0CAAmC,OAEjD,aAAU,gFAAiF,CAAE,MAAO,EAAK,CAAC,EAC1G,QAAM,WAAQ,2CAAoC,EAEtD",
+  "names": ["toggle_auto_hide_delay_exports", "__export", "toggle_auto_hide_delay_default", "__toCommonJS", "import_child_process", "import_api", "out"]
+}

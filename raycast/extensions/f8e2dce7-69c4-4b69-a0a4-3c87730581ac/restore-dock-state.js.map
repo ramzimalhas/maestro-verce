@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/restore-dock-state.tsx"],
+  "sourcesContent": ["import { spawnSync } from \"child_process\";\nimport { closeMainWindow, environment, showHUD, showToast, Toast } from \"@raycast/api\";\nimport { homedir } from \"os\";\nimport fs from \"fs\";\n\nexport default async () => {\n  await closeMainWindow();\n  const backupPath = environment.supportPath + \"/com.apple.dock.plist\";\n  if (!fs.existsSync(backupPath)) {\n    await showToast({ title: \"No backups\", style: Toast.Style.Failure });\n    return;\n  }\n  const plistPath = homedir() + \"/Library/Preferences/com.apple.dock.plist\";\n  if (fs.existsSync(plistPath)) {\n    fs.unlinkSync(plistPath);\n  }\n  fs.copyFileSync(backupPath, plistPath);\n  spawnSync(\"killall Dock\", { shell: true });\n  await showHUD(\"\uD83D\uDCBB Dock state has been restore\");\n};\n"],
+  "mappings": "0jBAAA,IAAAA,EAAA,GAAAC,EAAAD,EAAA,aAAAE,IAAA,eAAAC,EAAAH,GAAA,IAAAI,EAA0B,yBAC1BC,EAAwE,wBACxEC,EAAwB,cACxBC,EAAe,iBAERL,EAAQ,SAAY,CACzB,QAAM,mBAAgB,EACtB,IAAMM,EAAa,cAAY,YAAc,wBAC7C,GAAI,CAAC,EAAAC,QAAG,WAAWD,CAAU,EAAG,CAC9B,QAAM,aAAU,CAAE,MAAO,aAAc,MAAO,QAAM,MAAM,OAAQ,CAAC,EACnE,MACF,CACA,IAAME,KAAY,WAAQ,EAAI,4CAC1B,EAAAD,QAAG,WAAWC,CAAS,GACzB,EAAAD,QAAG,WAAWC,CAAS,EAEzB,EAAAD,QAAG,aAAaD,EAAYE,CAAS,KACrC,aAAU,eAAgB,CAAE,MAAO,EAAK,CAAC,EACzC,QAAM,WAAQ,uCAAgC,CAChD",
+  "names": ["restore_dock_state_exports", "__export", "restore_dock_state_default", "__toCommonJS", "import_child_process", "import_api", "import_os", "import_fs", "backupPath", "fs", "plistPath"]
+}

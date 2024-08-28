@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/backup-dock-state.tsx"],
+  "sourcesContent": ["import { closeMainWindow, environment, showHUD } from \"@raycast/api\";\nimport * as fs from \"fs\";\nimport { homedir } from \"os\";\n\nexport default async () => {\n  await closeMainWindow();\n  const backupPath = environment.supportPath + \"/com.apple.dock.plist\";\n  const plistPath = homedir() + \"/Library/Preferences/com.apple.dock.plist\";\n  if (fs.existsSync(backupPath)) {\n    fs.unlinkSync(backupPath);\n  }\n  fs.copyFileSync(plistPath, backupPath);\n  await showHUD(\"\uD83D\uDCBB Dock state has been backup\");\n};\n"],
+  "mappings": "0jBAAA,IAAAA,EAAA,GAAAC,EAAAD,EAAA,aAAAE,IAAA,eAAAC,EAAAH,GAAA,IAAAI,EAAsD,wBACtDC,EAAoB,iBACpBC,EAAwB,cAEjBJ,EAAQ,SAAY,CACzB,QAAM,mBAAgB,EACtB,IAAMK,EAAa,cAAY,YAAc,wBACvCC,KAAY,WAAQ,EAAI,4CACvB,aAAWD,CAAU,GACvB,aAAWA,CAAU,EAEvB,eAAaC,EAAWD,CAAU,EACrC,QAAM,WAAQ,sCAA+B,CAC/C",
+  "names": ["backup_dock_state_exports", "__export", "backup_dock_state_default", "__toCommonJS", "import_api", "fs", "import_os", "backupPath", "plistPath"]
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/toggle-contents-immutable.tsx"],
+  "sourcesContent": ["import { spawnSync } from \"child_process\";\nimport { closeMainWindow, showHUD } from \"@raycast/api\";\n\nexport default async () => {\n  await closeMainWindow();\n  const out = spawnSync(\"defaults read com.apple.Dock contents-immutable\", { shell: true });\n  const isTurnOn = String(out.output[1]).trim();\n\n  if (isTurnOn === \"1\") {\n    spawnSync(\"defaults write com.apple.Dock contents-immutable -bool FALSE && killall Dock\", { shell: true });\n    await showHUD(\"\uD83D\uDCBB Turn off content lock\");\n  } else {\n    spawnSync(\"defaults write com.apple.Dock contents-immutable -bool TRUE && killall Dock\", { shell: true });\n    await showHUD(\"\uD83D\uDCBB Turn on content lock\");\n  }\n};\n"],
+  "mappings": "yaAAA,IAAAA,EAAA,GAAAC,EAAAD,EAAA,aAAAE,IAAA,eAAAC,EAAAH,GAAA,IAAAI,EAA0B,yBAC1BC,EAAyC,wBAElCH,EAAQ,SAAY,CACzB,QAAM,mBAAgB,EACtB,IAAMI,KAAM,aAAU,kDAAmD,CAAE,MAAO,EAAK,CAAC,EACvE,OAAOA,EAAI,OAAO,CAAC,CAAC,EAAE,KAAK,IAE3B,QACf,aAAU,+EAAgF,CAAE,MAAO,EAAK,CAAC,EACzG,QAAM,WAAQ,iCAA0B,OAExC,aAAU,8EAA+E,CAAE,MAAO,EAAK,CAAC,EACxG,QAAM,WAAQ,gCAAyB,EAE3C",
+  "names": ["toggle_contents_immutable_exports", "__export", "toggle_contents_immutable_default", "__toCommonJS", "import_child_process", "import_api", "out"]
+}
